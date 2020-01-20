@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: chat-ingress
+  annotations:
+    nginx.org/websocket-services: "chat"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: chat
+          servicePort: 3000
