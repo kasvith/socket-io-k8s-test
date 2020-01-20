@@ -4,11 +4,14 @@ metadata:
   name: chat-ingress
   annotations:
     nginx.org/websocket-services: "chat"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route"
+    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
 spec:
   rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: chat
-          servicePort: 3000
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: chat
+              servicePort: 3000
